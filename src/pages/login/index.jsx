@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import authentication from '../../packages/authentication';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -11,14 +12,22 @@ const Login = () => {
 
   const loginWithEmailAndPassword = async (event) => {
     event.preventDefault();
+    setError(null); // Limpar erros anteriores
+
+    if (!email || !password) {
+      setError('Por favor, insira tanto o email quanto a senha.'); // Validação básica
+      return;
+    }
 
     try {
-      //await firebase.auth().signInWithEmailAndPassword(email, password);
-      history.push('/home');
+      await authentication(email, password);
+      history.push('/home'); // Redireciona após login bem-sucedido
     } catch (error) {
-      setError('Error logging in');
+      // Aqui você pode ajustar a mensagem baseada no tipo de erro
+      setError(error.message || 'Erro ao tentar logar. Por favor, tente novamente.');
     }
   };
+
 
   return (
     <div className='flex justify-evenly flex-col h-screen items-center'>

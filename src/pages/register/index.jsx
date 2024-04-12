@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-//import firebase from '../firebase';
+import registerUser from '../../packages/createAccount';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -14,12 +14,31 @@ const Register = () => {
 
   const registerWithEmailAndPassword = async (event) => {
     event.preventDefault();
-
+  
+    // Debug: Log the values before trying to register
+    console.log(`Attempting to register with email: ${email}, password: ${password}, name: ${name}, age: ${age}`);
+  
+    // Additional input validation can be done here
+    if (password.length < 6) {
+      setError('Password should be at least 6 characters.');
+      return;
+    }
+  
+    // Ensure age is a number
+    const numericAge = Number(age);
+    if (isNaN(numericAge)) {
+      setError('Age must be a number.');
+      return;
+    }
+  
     try {
-      //await firebase.auth().createUserWithEmailAndPassword(email, password);
-      history.push('/login');
+      const user = await registerUser(email, password, name, numericAge);
+      console.log('Usuário registrado com sucesso:', user);
+      history.push('/');
     } catch (error) {
-      setError('Error registering account');
+      // Here you should also log the complete error for debugging
+      console.error(error);
+      setError('Error registering account: ' + error.message);
     }
   };
 
