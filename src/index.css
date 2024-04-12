@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset CSS para garantir consistência entre navegadores */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Configurações globais */
+html {
+  /* Define tamanho de fonte padrão para responsividade */
+  font-size: 16px;
+}
+
+body {
+  font-family: "Poppins"; /* Fonte padrão */
+  line-height: 1.6; /* Espaçamento de linha */
+  color: #333; /* Cor do texto */
+  background-color: #f4f4f4; /* Cor de fundo */ 
+}
+
+/* Container flexível */
+.container {
+  max-width: 1200px; /* Largura máxima do container */
+  margin: 0 auto; /* Centraliza o container */
+  padding: 0 20px; /* Padding para não colar nas laterais do viewport */
+}
+
+/* Imagens responsivas */
+img {
+  max-width: 100%; /* Faz a imagem ser responsiva */
+  height: auto; /* Mantém a proporção da imagem */
+}
+
+/* Media Queries para design responsivo */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px; /* Diminui a fonte para dispositivos menores */
+  }
+
+  .container {
+    padding: 0 10px; /* Reduz o padding em telas menores */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px; /* Ajusta a fonte para telas muito pequenas */
+  }
+}
