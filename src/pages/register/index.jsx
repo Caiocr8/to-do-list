@@ -92,7 +92,7 @@ const Register = () => {
             <p className='font-bold hover:underline cursor-pointer hover:text-[#1FCC79]'>Esqueceu sua senha?</p>
         </div>
         <div className='flex justify-center'>
-            <button className='bg-[#1FCC79] shadow-md hover:bg-white hover:text-[#1FCC79] text-white font-bold rounded-2xl w-80 h-14' type="submit">Login</button>
+            <button className='bg-[#1FCC79] shadow-md hover:bg-white hover:text-[#1FCC79] text-white font-bold rounded-2xl w-80 h-14' type="submit">Registrar</button>
         </div>
       </form>
       <div>

@@ -12,21 +12,26 @@ const Login = () => {
 
   const loginWithEmailAndPassword = async (event) => {
     event.preventDefault();
-    setError(null); // Limpar erros anteriores
-
+    setError(null); // Clear previous errors
+  
     if (!email || !password) {
-      setError('Por favor, insira tanto o email quanto a senha.'); // Validação básica
+      setError('Por favor, insira tanto o email quanto a senha.'); // Basic validation
       return;
     }
-
+  
     try {
       await authentication(email, password);
-      history.push('/home'); // Redireciona após login bem-sucedido
+      history.push('/home'); // Redirect after successful login
     } catch (error) {
-      // Aqui você pode ajustar a mensagem baseada no tipo de erro
-      setError(error.message || 'Erro ao tentar logar. Por favor, tente novamente.');
+      // Log the error for debugging purposes
+      console.error('Login error:', error);
+  
+      // Handle different error codes from Firebase Auth
+      let errorMessage = 'Erro ao tentar logar. Por favor, tente novamente.';
+      setError(errorMessage);
     }
   };
+  
 
 
   return (
